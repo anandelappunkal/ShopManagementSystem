@@ -11,9 +11,9 @@ namespace ShopManagementSystem.Models
 
         public int? MobileNumber { get; set; }
         [Column(TypeName = "decimal(18,4)")]
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public BaseEntity()
         {
