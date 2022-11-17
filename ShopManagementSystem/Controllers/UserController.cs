@@ -1,14 +1,23 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ShopManagementSystem.Data;
 
 namespace ShopManagementSystem.Controllers
 {
     public class UserController : Controller
     {
-        // GET: UserController
-        public ActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public UserController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
+        }
+        // GET: UserController
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.Users.Include(l => l.UserType);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: UserController/Details/5
