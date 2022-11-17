@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopManagementSystem.Data;
 
@@ -11,9 +12,10 @@ using ShopManagementSystem.Data;
 namespace ShopManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221117015637_Name")]
+    partial class Name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorys", (string)null);
+                    b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Fastag", b =>
@@ -89,7 +91,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("Fastags", (string)null);
+                    b.ToTable("Fastags");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.InsuranceDetail", b =>
@@ -175,7 +177,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("InsuranceDetails", (string)null);
+                    b.ToTable("InsuranceDetails");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Inventory", b =>
@@ -222,7 +224,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Inventorys", (string)null);
+                    b.ToTable("Inventorys");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.JioPoslite", b =>
@@ -267,7 +269,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("JioPsoslites", (string)null);
+                    b.ToTable("JioPsoslites");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.ODCategory", b =>
@@ -299,7 +301,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ODCategorys", (string)null);
+                    b.ToTable("ODCategorys");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Shop", b =>
@@ -340,7 +342,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Shops", (string)null);
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.SoundBox", b =>
@@ -388,7 +390,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SoundBoxs", (string)null);
+                    b.ToTable("SoundBoxs");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.User", b =>
@@ -449,7 +451,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.UserDetail", b =>
@@ -487,7 +489,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("UserDetails", (string)null);
+                    b.ToTable("UserDetails");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.UserType", b =>
@@ -519,7 +521,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserTypes", (string)null);
+                    b.ToTable("UserTypes");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Fastag", b =>
