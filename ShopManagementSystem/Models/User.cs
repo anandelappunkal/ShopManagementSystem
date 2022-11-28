@@ -1,11 +1,11 @@
-﻿using ShopManagementSystem.Migrations;
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace ShopManagementSystem.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         [StringLength(15, ErrorMessage = "UserName cannot be longer than 15 characters.")]
         public string UserName { get; set; }
         [StringLength(15, ErrorMessage = "Password cannot be longer than 15 characters.")]

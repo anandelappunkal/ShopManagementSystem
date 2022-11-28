@@ -36,7 +36,7 @@ namespace ShopManagementSystem.Controllers
 
 
             var UserTypes = new SelectList(_context.UserTypes.OrderBy(l => l.Name)
-        .ToDictionary(us => us.Id, us => us.Name), "Key", "Value");
+        .ToDictionary(us => us.UserTypeId, us => us.Name), "Key", "Value");
             ViewBag.UserTypes = UserTypes;
             return View(userType);
            

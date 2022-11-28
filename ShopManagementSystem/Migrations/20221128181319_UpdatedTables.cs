@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShopManagementSystem.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class UpdatedTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,128 +13,74 @@ namespace ShopManagementSystem.Migrations
                 name: "Categorys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categorys", x => x.Id);
+                    table.PrimaryKey("PK_Categorys", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ODCategorys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ODCategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ODCategorys", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SoundBoxs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ItemPlan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NoOfItem = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    ShopName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShopId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SoundBoxs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_ODCategorys", x => x.ODCategoryId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    UserTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTypes", x => x.Id);
+                    table.PrimaryKey("PK_UserTypes", x => x.UserTypeId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Inventorys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    InventoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MobileNumber = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    PartyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NoOfItem = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    PartyName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NoOfItem = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventorys", x => x.Id);
+                    table.PrimaryKey("PK_Inventorys", x => x.InventoryId);
                     table.ForeignKey(
                         name: "FK_Inventorys_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -142,25 +88,82 @@ namespace ShopManagementSystem.Migrations
                 name: "Shops",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ShopId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Place = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    MobileNumber = table.Column<int>(type: "int", nullable: false),
+                    Place = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.Id);
+                    table.PrimaryKey("PK_Shops", x => x.ShopId);
                     table.ForeignKey(
                         name: "FK_Shops_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SoundBoxs",
+                columns: table => new
+                {
+                    SoundBoxId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemPlan = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    NoOfItem = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    ShopName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShopId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SoundBoxs", x => x.SoundBoxId);
+                    table.ForeignKey(
+                        name: "FK_SoundBoxs_Categorys_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categorys",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AadharID = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    PanCard = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    MobileNumber = table.Column<int>(type: "int", nullable: true),
+                    UserTypeID = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_UserTypes_UserTypeID",
+                        column: x => x.UserTypeID,
+                        principalTable: "UserTypes",
+                        principalColumn: "UserTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -168,30 +171,28 @@ namespace ShopManagementSystem.Migrations
                 name: "Fastags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    FastagId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    userId = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fastags", x => x.Id);
+                    table.PrimaryKey("PK_Fastags", x => x.FastagId);
                     table.ForeignKey(
                         name: "FK_Fastags_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Fastags_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_Fastags_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -199,50 +200,46 @@ namespace ShopManagementSystem.Migrations
                 name: "InsuranceDetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    InsuranceDetailId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    userId = table.Column<int>(type: "int", nullable: false),
-                    UserDetailsId = table.Column<int>(type: "int", nullable: true),
-                    NomineeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PolicyNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    NomineeName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    PolicyNumber = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
-                    Premium = table.Column<int>(type: "int", nullable: false),
+                    Premium = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     ODCategoryId = table.Column<int>(type: "int", nullable: true),
-                    ODPremium = table.Column<int>(type: "int", nullable: false),
+                    NoClaimBonusPercentage = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    ODPremium = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     ODPercentage = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Commission = table.Column<int>(type: "int", nullable: false),
-                    CompanyName = table.Column<int>(type: "int", nullable: false),
-                    VehicleModel = table.Column<int>(type: "int", nullable: false),
+                    Commission = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    VehicleModel = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     VehicleNumber = table.Column<int>(type: "int", nullable: false),
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Broker = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Income = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Expense = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Expense = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InsuranceDetails", x => x.Id);
+                    table.PrimaryKey("PK_InsuranceDetails", x => x.InsuranceDetailId);
                     table.ForeignKey(
                         name: "FK_InsuranceDetails_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
-                        principalColumn: "Id");
+                        principalColumn: "CategoryId");
                     table.ForeignKey(
                         name: "FK_InsuranceDetails_ODCategorys_ODCategoryId",
                         column: x => x.ODCategoryId,
                         principalTable: "ODCategorys",
-                        principalColumn: "Id");
+                        principalColumn: "ODCategoryId");
                     table.ForeignKey(
-                        name: "FK_InsuranceDetails_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_InsuranceDetails_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -251,15 +248,13 @@ namespace ShopManagementSystem.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     TarifPlan = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,13 +263,13 @@ namespace ShopManagementSystem.Migrations
                         name: "FK_JioPsoslites_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_JioPsoslites_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_JioPsoslites_Users_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -282,30 +277,28 @@ namespace ShopManagementSystem.Migrations
                 name: "UserDetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    UserDetailId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    userID = table.Column<int>(type: "int", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    CategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserDetails", x => x.Id);
+                    table.PrimaryKey("PK_UserDetails", x => x.UserDetailId);
                     table.ForeignKey(
                         name: "FK_UserDetails_Categorys_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Categorys",
-                        principalColumn: "Id",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserDetails_Users_userID",
-                        column: x => x.userID,
+                        name: "FK_UserDetails_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -315,9 +308,9 @@ namespace ShopManagementSystem.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fastags_userId",
+                name: "IX_Fastags_UserId",
                 table: "Fastags",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InsuranceDetails_CategoryId",
@@ -330,9 +323,9 @@ namespace ShopManagementSystem.Migrations
                 column: "ODCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InsuranceDetails_userId",
+                name: "IX_InsuranceDetails_UserId",
                 table: "InsuranceDetails",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventorys_CategoryId",
@@ -345,13 +338,18 @@ namespace ShopManagementSystem.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JioPsoslites_UserId",
+                name: "IX_JioPsoslites_CustomerId",
                 table: "JioPsoslites",
-                column: "UserId");
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shops_CategoryId",
                 table: "Shops",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SoundBoxs_CategoryId",
+                table: "SoundBoxs",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -360,9 +358,14 @@ namespace ShopManagementSystem.Migrations
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserDetails_userID",
+                name: "IX_UserDetails_UserID",
                 table: "UserDetails",
-                column: "userID");
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserTypeID",
+                table: "Users",
+                column: "UserTypeID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -389,9 +392,6 @@ namespace ShopManagementSystem.Migrations
                 name: "UserDetails");
 
             migrationBuilder.DropTable(
-                name: "UserTypes");
-
-            migrationBuilder.DropTable(
                 name: "ODCategorys");
 
             migrationBuilder.DropTable(
@@ -399,6 +399,9 @@ namespace ShopManagementSystem.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "UserTypes");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ShopManagementSystem.Models
 {
     public class Shop 
     {
-        public int Id { get; set; }
+        public int ShopId { get; set; }
         [StringLength(15, ErrorMessage = "Name cannot be longer than 15 characters.")]
         public string Name { get; set; }
         public int MobileNumber { get; set; }
@@ -15,7 +15,8 @@ namespace ShopManagementSystem.Models
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal Total { get; set; }
-        public Category? category { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category? Category { get; set; }
         public int CategoryId { get; set; }
 
         public DateTime CreatedDate { get; set; }

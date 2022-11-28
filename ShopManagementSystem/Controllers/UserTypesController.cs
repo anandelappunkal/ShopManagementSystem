@@ -34,7 +34,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var userType = await _context.UserTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.UserTypeId == id);
             if (userType == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ShopManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Name,Id,CreatedDate,ModifiedDate,MobileNumber,Total,Description")] UserType userType)
         {
-            if (id != userType.Id)
+            if (id != userType.UserTypeId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ShopManagementSystem.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserTypeExists(userType.Id))
+                    if (!UserTypeExists(userType.UserTypeId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var userType = await _context.UserTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.UserTypeId == id);
             if (userType == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace ShopManagementSystem.Controllers
 
         private bool UserTypeExists(int id)
         {
-          return _context.UserTypes.Any(e => e.Id == id);
+          return _context.UserTypes.Any(e => e.UserTypeId == id);
         }
     }
 }

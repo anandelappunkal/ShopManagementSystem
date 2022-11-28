@@ -4,7 +4,7 @@ namespace ShopManagementSystem.Models
 {
     public class ODCategory
     {
-        public int Id { get; set; }
+        public int ODCategoryId { get; set; }
         [StringLength(15, ErrorMessage = "Name cannot be longer than 15 characters.")]
         public string Name { get; set; }
 

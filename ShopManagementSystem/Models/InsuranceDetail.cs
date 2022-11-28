@@ -6,7 +6,7 @@ namespace ShopManagementSystem.Models
 {
     public class InsuranceDetail 
     {
-        public int Id { get; set; }
+        public int InsuranceDetailId { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }
         public int? UserId { get; set; }

@@ -5,7 +5,7 @@ namespace ShopManagementSystem.Models
 {
     public class Fastag 
     {
-        public int Id { get; set; }
+        public int FastagId { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal? Total { get; set; }

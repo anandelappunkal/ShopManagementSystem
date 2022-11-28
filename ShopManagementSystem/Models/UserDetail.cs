@@ -10,7 +10,7 @@ namespace ShopManagementSystem.Models
             this.ModifiedDate = DateTime.UtcNow;
         }
 
-        public int Id { get; set; }
+        public int UserDetailId { get; set; }
         [StringLength(50, ErrorMessage = "Description cannot be longer than 50 characters.")]
         public string? Description { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -12,8 +12,8 @@ using ShopManagementSystem.Data;
 namespace ShopManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221108072302_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20221128181319_UpdatedTables")]
+    partial class UpdatedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,44 +26,39 @@ namespace ShopManagementSystem.Migrations
 
             modelBuilder.Entity("ShopManagementSystem.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Fastag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FastagId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FastagId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -71,38 +66,31 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Total")
+                    b.Property<decimal?>("Total")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("userId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("FastagId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Fastags");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.InsuranceDetail", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("InsuranceDetailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InsuranceDetailId"), 1L, 1);
 
                     b.Property<string>("Broker")
                         .IsRequired()
@@ -111,22 +99,19 @@ namespace ShopManagementSystem.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Commission")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Commission")
+                        .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("CompanyName")
-                        .HasColumnType("int");
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Expense")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Expense")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -134,15 +119,16 @@ namespace ShopManagementSystem.Migrations
                     b.Property<decimal>("Income")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("NoClaimBonusPercentage")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<string>("NomineeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int?>("ODCategoryId")
                         .HasColumnType("int");
@@ -150,49 +136,46 @@ namespace ShopManagementSystem.Migrations
                     b.Property<decimal>("ODPercentage")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("ODPremium")
-                        .HasColumnType("int");
+                    b.Property<decimal>("ODPremium")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("PolicyNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("Premium")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Total")
+                    b.Property<decimal>("Premium")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int?>("UserDetailsId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VehicleModel")
-                        .HasColumnType("int");
+                    b.Property<string>("VehicleModel")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("VehicleNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("InsuranceDetailId");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ODCategoryId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("InsuranceDetails");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Inventory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("InventoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InventoryId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -200,11 +183,7 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
+                    b.Property<int>("MobileNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -215,19 +194,21 @@ namespace ShopManagementSystem.Migrations
 
                     b.Property<string>("PartyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<decimal>("Total")
+                    b.Property<decimal?>("Total")
                         .HasColumnType("decimal(18,4)");
 
-                    b.HasKey("Id");
+                    b.HasKey("InventoryId");
 
                     b.HasIndex("CategoryId");
 
@@ -251,11 +232,7 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -268,58 +245,50 @@ namespace ShopManagementSystem.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("JioPsoslites");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.ODCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ODCategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ODCategoryId"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("Id");
+                    b.HasKey("ODCategoryId");
 
                     b.ToTable("ODCategorys");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Shop", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ShopId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShopId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -327,11 +296,7 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
+                    b.Property<int>("MobileNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -339,16 +304,18 @@ namespace ShopManagementSystem.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Place")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,4)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ShopId");
 
                     b.HasIndex("CategoryId");
 
@@ -357,11 +324,11 @@ namespace ShopManagementSystem.Migrations
 
             modelBuilder.Entity("ShopManagementSystem.Models.SoundBox", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SoundBoxId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SoundBoxId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -369,16 +336,10 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ItemPlan")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -396,25 +357,33 @@ namespace ShopManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Total")
+                    b.Property<decimal?>("Total")
                         .HasColumnType("decimal(18,4)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SoundBoxId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("SoundBoxs");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<string>("AadharID")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -422,49 +391,57 @@ namespace ShopManagementSystem.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("MobileNumber")
+                    b.Property<int?>("MobileNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PanCard")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,4)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserTypeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserTypeID");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.UserDetail", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserDetailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserDetailId"), 1L, 1);
 
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
@@ -473,103 +450,90 @@ namespace ShopManagementSystem.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<int>("userID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserDetailId");
 
                     b.HasIndex("CategoryID");
 
-                    b.HasIndex("userID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("UserDetails");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.UserType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserTypeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserTypeId"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MobileNumber")
-                        .HasColumnType("int");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserTypeId");
 
                     b.ToTable("UserTypes");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Fastag", b =>
                 {
-                    b.HasOne("ShopManagementSystem.Models.Category", "category")
+                    b.HasOne("ShopManagementSystem.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopManagementSystem.Models.User", "user")
+                    b.HasOne("ShopManagementSystem.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.InsuranceDetail", b =>
                 {
-                    b.HasOne("ShopManagementSystem.Models.Category", "category")
+                    b.HasOne("ShopManagementSystem.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("ShopManagementSystem.Models.ODCategory", "oDCategory")
+                    b.HasOne("ShopManagementSystem.Models.ODCategory", "ODCategory")
                         .WithMany()
                         .HasForeignKey("ODCategoryId");
 
-                    b.HasOne("ShopManagementSystem.Models.User", "user")
+                    b.HasOne("ShopManagementSystem.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
 
-                    b.Navigation("oDCategory");
+                    b.Navigation("ODCategory");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Inventory", b =>
@@ -585,7 +549,7 @@ namespace ShopManagementSystem.Migrations
 
             modelBuilder.Entity("ShopManagementSystem.Models.JioPoslite", b =>
                 {
-                    b.HasOne("ShopManagementSystem.Models.Category", "category")
+                    b.HasOne("ShopManagementSystem.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -593,24 +557,46 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasOne("ShopManagementSystem.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
 
                     b.Navigation("user");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.Shop", b =>
                 {
-                    b.HasOne("ShopManagementSystem.Models.Category", "category")
+                    b.HasOne("ShopManagementSystem.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ShopManagementSystem.Models.SoundBox", b =>
+                {
+                    b.HasOne("ShopManagementSystem.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ShopManagementSystem.Models.User", b =>
+                {
+                    b.HasOne("ShopManagementSystem.Models.UserType", "UserType")
+                        .WithMany()
+                        .HasForeignKey("UserTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserType");
                 });
 
             modelBuilder.Entity("ShopManagementSystem.Models.UserDetail", b =>
@@ -623,7 +609,7 @@ namespace ShopManagementSystem.Migrations
 
                     b.HasOne("ShopManagementSystem.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("userID")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

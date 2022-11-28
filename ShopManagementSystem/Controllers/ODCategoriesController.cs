@@ -34,7 +34,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var oDCategory = await _context.ODCategorys
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ODCategoryId == id);
             if (oDCategory == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ShopManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Name,Id,CreatedDate,ModifiedDate,MobileNumber,Total,Description")] ODCategory oDCategory)
         {
-            if (id != oDCategory.Id)
+            if (id != oDCategory.ODCategoryId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ShopManagementSystem.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ODCategoryExists(oDCategory.Id))
+                    if (!ODCategoryExists(oDCategory.ODCategoryId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var oDCategory = await _context.ODCategorys
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ODCategoryId == id);
             if (oDCategory == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace ShopManagementSystem.Controllers
 
         private bool ODCategoryExists(int id)
         {
-          return _context.ODCategorys.Any(e => e.Id == id);
+          return _context.ODCategorys.Any(e => e.ODCategoryId == id);
         }
     }
 }

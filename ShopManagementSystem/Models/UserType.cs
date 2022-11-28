@@ -4,7 +4,7 @@ namespace ShopManagementSystem.Models
 {
     public class UserType 
     {
-        public int Id { get; set; }
+        public int UserTypeId { get; set; }
         [StringLength(50, ErrorMessage = "Description cannot be longer than 50 characters.")]
         public string? Description { get; set; }
         public DateTime CreatedDate { get; set; }

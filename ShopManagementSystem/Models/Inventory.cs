@@ -6,7 +6,7 @@ namespace ShopManagementSystem.Models
 {
     public class Inventory 
     {
-        public int Id { get; set; }
+        public int InventoryId { get; set; }
 
         public int MobileNumber { get; set; }
         public Category category { get; set; }
