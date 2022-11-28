@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopManagementSystem.Data;
+using ShopManagementSystem.Models;
 
 namespace ShopManagementSystem.Controllers
 {
@@ -27,24 +29,41 @@ namespace ShopManagementSystem.Controllers
         }
 
         // GET: UserController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            return View();
+            User userType = new User();
+            ViewData["UserTypeId"] = new SelectList(_context.UserTypes, "Id", "Name");
+
+
+            var UserTypes = new SelectList(_context.UserTypes.OrderBy(l => l.Name)
+        .ToDictionary(us => us.Id, us => us.Name), "Key", "Value");
+            ViewBag.UserTypes = UserTypes;
+            return View(userType);
+           
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create( User user)
         {
-            try
+            var userType = _context.UserTypes.Find(user.UserTypeID);
+            if (userType == null)
             {
+                return NotFound();
+            }
+            else
+            {
+                user.UserType = userType;
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            ViewData["UserTypeId"] = new SelectList(_context.UserTypes, "Id", "Name", user.UserTypeID);
+            return View(user);
         }
 
         // GET: UserController/Edit/5

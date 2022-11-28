@@ -1,29 +1,46 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopManagementSystem.Models
 {
-    public class InsuranceDetail : BaseEntity
+    public class InsuranceDetail 
     {
-
-        public User user { get; set; }
+        public int Id { get; set; }
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
         public int? UserId { get; set; }
 
+        [StringLength(30, ErrorMessage = "NomineeName cannot be longer than 30 characters.")]
         public string NomineeName { get; set; }
+
+        [StringLength(30, ErrorMessage = "PolicyNumber cannot be longer than 30 characters.")]
         public string PolicyNumber { get; set; }
-        public Category category { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category? Category { get; set; }
         public int? CategoryId { get; set; }
-        public int Premium { get; set; }
-        public ODCategory oDCategory { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal Premium { get; set; }
+        [ForeignKey("ODCategoryId")]
+        public ODCategory? ODCategory { get; set; }
         public int? ODCategoryId { get; set; }
-        public int ODPremium { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal NoClaimBonusPercentage { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal ODPremium { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal ODPercentage { get; set; }
-        public int Commission { get; set; }
 
-        public int CompanyName { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal Commission { get; set; }
 
-        public int VehicleModel { get; set; }
+        [StringLength(15, ErrorMessage = "CompanyName cannot be longer than 15 characters.")]
+        public string CompanyName { get; set; }
+        [StringLength(15, ErrorMessage = "VehicleModel cannot be longer than 15 characters.")]
+        public string VehicleModel { get; set; }
 
         public int VehicleNumber { get; set; }
 
@@ -34,7 +51,17 @@ namespace ShopManagementSystem.Models
 
         public decimal Income { get; set; }
 
-        public string Expense { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal Expense { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+
+        public InsuranceDetail()
+        {
+            this.CreatedDate = DateTime.UtcNow;
+            this.ModifiedDate = DateTime.UtcNow;
+        }
+
     }
 }
 
