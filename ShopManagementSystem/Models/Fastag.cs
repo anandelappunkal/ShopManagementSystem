@@ -5,18 +5,14 @@ namespace ShopManagementSystem.Models
 {
     public class Fastag 
     {
-        public int FastagId { get; set; }
-
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal? Total { get; set; }
+        public int FastagId { get; set; }      
+       
         [ForeignKey("UserId")]
         public User User { get; set; }
         public int UserId { get; set; }
-        [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
 
-        public int CategoryId { get; set; }
-
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal? AmountTotal { get; set; }  
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
 

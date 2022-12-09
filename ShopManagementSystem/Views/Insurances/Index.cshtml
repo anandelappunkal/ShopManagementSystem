@@ -1,0 +1,155 @@
+﻿@model IEnumerable<ShopManagementSystem.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomineeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PolicyNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ODCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Premium)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ODPremium)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ODPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoClaimBonusPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Broker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChaiseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufactureMonthyear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Income)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomineeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PolicyNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ODCategory.ODCategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Premium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ODPremium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ODPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoClaimBonusPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName.CompanyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChaiseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufactureMonthyear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Income)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InsuranceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InsuranceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InsuranceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

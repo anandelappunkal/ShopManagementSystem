@@ -24,7 +24,7 @@ namespace ShopManagementSystem.Models
         public string AadharID { get; set; }
         [StringLength(15, ErrorMessage = "PanCard cannot be longer than 15 characters.")]
 
-        public string PanCard { get; set; }
+        public string? PanCard { get; set; }
 
         public int? MobileNumber { get; set; }
 

@@ -9,15 +9,14 @@ namespace ShopManagementSystem.Models
         public int ShopId { get; set; }
         [StringLength(15, ErrorMessage = "Name cannot be longer than 15 characters.")]
         public string Name { get; set; }
-        public int MobileNumber { get; set; }
-        [StringLength(15, ErrorMessage = "Place cannot be longer than 15 characters.")]
+        public string? MobileNumber { get; set; }
+        [StringLength(30, ErrorMessage = "Place cannot be longer than 30 characters.")]
         public string Place { get; set; }
 
+        public string? Item { get; set; }
+
         [Column(TypeName = "decimal(18,4)")]
-        public decimal Total { get; set; }
-        [ForeignKey("CategoryId")]
-        public Category? Category { get; set; }
-        public int CategoryId { get; set; }
+        public decimal Total { get; set; }           
 
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }

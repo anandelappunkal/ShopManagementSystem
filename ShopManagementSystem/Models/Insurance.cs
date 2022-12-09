@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopManagementSystem.Models
 {
-    public class InsuranceDetail 
+    public class Insurance
     {
-        public int InsuranceDetailId { get; set; }
+        public int InsuranceId { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }
         public int? UserId { get; set; }
@@ -16,18 +16,12 @@ namespace ShopManagementSystem.Models
 
         [StringLength(30, ErrorMessage = "PolicyNumber cannot be longer than 30 characters.")]
         public string PolicyNumber { get; set; }
-        [ForeignKey("CategoryId")]
-        public Category? Category { get; set; }
-        public int? CategoryId { get; set; }
 
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal Premium { get; set; }
         [ForeignKey("ODCategoryId")]
         public ODCategory? ODCategory { get; set; }
         public int? ODCategoryId { get; set; }
-
         [Column(TypeName = "decimal(18,4)")]
-        public decimal NoClaimBonusPercentage { get; set; }
+        public decimal Premium { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal ODPremium { get; set; }
@@ -37,8 +31,12 @@ namespace ShopManagementSystem.Models
         [Column(TypeName = "decimal(18,4)")]
         public decimal Commission { get; set; }
 
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal NoClaimBonusPercentage { get; set; }  
+
         [StringLength(15, ErrorMessage = "CompanyName cannot be longer than 15 characters.")]
-        public string CompanyName { get; set; }
+        public Company CompanyName { get; set; }
+        public int CompanyId { get; set; }
         [StringLength(15, ErrorMessage = "VehicleModel cannot be longer than 15 characters.")]
         public string VehicleModel { get; set; }
 
@@ -46,17 +44,24 @@ namespace ShopManagementSystem.Models
 
         public DateTime ExpireDate { get; set; }
 
-        public string Broker { get; set; }
-        [Column(TypeName = "decimal(18,4)")]
+        public string Broker { get; set; }       
 
-        public decimal Income { get; set; }
+        public string? EngineNumber { get; set; }
+
+        public string? ChaiseNumber { get; set; }
+
+        public string? ManufactureMonthyear { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
-        public decimal Expense { get; set; }
+        public decimal? Income { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal? Expense { get; set; }
+      
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public InsuranceDetail()
+        public Insurance()
         {
             this.CreatedDate = DateTime.UtcNow;
             this.ModifiedDate = DateTime.UtcNow;

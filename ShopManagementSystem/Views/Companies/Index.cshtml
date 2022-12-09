@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopManagementSystem.Models.ODCategory>
+﻿@model IEnumerable<ShopManagementSystem.Models.Company>
 
 @{
     ViewData["Title"] = "Index";
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ODCategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ODCategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ODCategoryId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a>
             </td>
         </tr>
 }

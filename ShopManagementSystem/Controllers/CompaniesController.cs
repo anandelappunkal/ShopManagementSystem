@@ -10,85 +10,85 @@ using ShopManagementSystem.Models;
 
 namespace ShopManagementSystem.Controllers
 {
-    public class UserTypesController : Controller
+    public class CompaniesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UserTypesController(ApplicationDbContext context)
+        public CompaniesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: UserTypes
+        // GET: Companies
         public async Task<IActionResult> Index()
         {
-              return View(await _context.UserType.ToListAsync());
+              return View(await _context.Company.ToListAsync());
         }
 
-        // GET: UserTypes/Details/5
+        // GET: Companies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.UserType == null)
+            if (id == null || _context.Company == null)
             {
                 return NotFound();
             }
 
-            var userType = await _context.UserType
-                .FirstOrDefaultAsync(m => m.UserTypeId == id);
-            if (userType == null)
+            var company = await _context.Company
+                .FirstOrDefaultAsync(m => m.CompanyId == id);
+            if (company == null)
             {
                 return NotFound();
             }
 
-            return View(userType);
+            return View(company);
         }
 
-        // GET: UserTypes/Create
+        // GET: Companies/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UserTypes/Create
+        // POST: Companies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserTypeId,Name,Description,CreatedDate,ModifiedDate")] UserType userType)
+        public async Task<IActionResult> Create([Bind("CompanyId,Name,Description,CreatedDate,ModifiedDate")] Company company)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(userType);
+                _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(userType);
+            return View(company);
         }
 
-        // GET: UserTypes/Edit/5
+        // GET: Companies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.UserType == null)
+            if (id == null || _context.Company == null)
             {
                 return NotFound();
             }
 
-            var userType = await _context.UserType.FindAsync(id);
-            if (userType == null)
+            var company = await _context.Company.FindAsync(id);
+            if (company == null)
             {
                 return NotFound();
             }
-            return View(userType);
+            return View(company);
         }
 
-        // POST: UserTypes/Edit/5
+        // POST: Companies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserTypeId,Name,Description,CreatedDate,ModifiedDate")] UserType userType)
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,Name,Description,CreatedDate,ModifiedDate")] Company company)
         {
-            if (id != userType.UserTypeId)
+            if (id != company.CompanyId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace ShopManagementSystem.Controllers
             {
                 try
                 {
-                    _context.Update(userType);
+                    _context.Update(company);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserTypeExists(userType.UserTypeId))
+                    if (!CompanyExists(company.CompanyId))
                     {
                         return NotFound();
                     }
@@ -113,49 +113,49 @@ namespace ShopManagementSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(userType);
+            return View(company);
         }
 
-        // GET: UserTypes/Delete/5
+        // GET: Companies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.UserType == null)
+            if (id == null || _context.Company == null)
             {
                 return NotFound();
             }
 
-            var userType = await _context.UserType
-                .FirstOrDefaultAsync(m => m.UserTypeId == id);
-            if (userType == null)
+            var company = await _context.Company
+                .FirstOrDefaultAsync(m => m.CompanyId == id);
+            if (company == null)
             {
                 return NotFound();
             }
 
-            return View(userType);
+            return View(company);
         }
 
-        // POST: UserTypes/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.UserType == null)
+            if (_context.Company == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.UserType'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Company'  is null.");
             }
-            var userType = await _context.UserType.FindAsync(id);
-            if (userType != null)
+            var company = await _context.Company.FindAsync(id);
+            if (company != null)
             {
-                _context.UserType.Remove(userType);
+                _context.Company.Remove(company);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserTypeExists(int id)
+        private bool CompanyExists(int id)
         {
-          return _context.UserType.Any(e => e.UserTypeId == id);
+          return _context.Company.Any(e => e.CompanyId == id);
         }
     }
 }

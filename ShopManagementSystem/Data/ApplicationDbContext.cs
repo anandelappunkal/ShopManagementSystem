@@ -12,25 +12,27 @@ namespace ShopManagementSystem.Data
             : base(options)
         {
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Category> Categorys { get; set; }
-        public DbSet<ODCategory> ODCategorys { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Company> Company { get; set; }
 
+        public DbSet<ODCategory> ODCategory { get; set; }
+        public DbSet<UserType> UserType { get; set; }
 
-        public DbSet<Shop> Shops { get; set; }
-        public DbSet<UserDetail> UserDetails { get; set; }
-
-        public DbSet<JioPoslite> JioPsoslites { get; set; }
-
-        public DbSet<Inventory> Inventorys { get; set; }
        
 
-        public DbSet<Fastag> Fastags { get; set; }
+        public DbSet<Shop> Shop { get; set; }
+       
 
-        public DbSet<SoundBox> SoundBoxs { get; set; }
+        public DbSet<JioPoslite> JioPsoslite { get; set; }
 
-        public DbSet<InsuranceDetail> InsuranceDetails { get; set; }
+       
+       
+
+        public DbSet<Fastag> Fastag { get; set; }
+
+        public DbSet<SoundBox> SoundBox { get; set; }
+
+        public DbSet<Insurance> Insurance { get; set; }
 
     }
 }

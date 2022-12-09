@@ -22,18 +22,18 @@ namespace ShopManagementSystem.Controllers
         // GET: ODCategories
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ODCategorys.ToListAsync());
+              return View(await _context.ODCategory.ToListAsync());
         }
 
         // GET: ODCategories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ODCategorys == null)
+            if (id == null || _context.ODCategory == null)
             {
                 return NotFound();
             }
 
-            var oDCategory = await _context.ODCategorys
+            var oDCategory = await _context.ODCategory
                 .FirstOrDefaultAsync(m => m.ODCategoryId == id);
             if (oDCategory == null)
             {
@@ -54,7 +54,7 @@ namespace ShopManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Id,CreatedDate,ModifiedDate,MobileNumber,Total,Description")] ODCategory oDCategory)
+        public async Task<IActionResult> Create([Bind("ODCategoryId,Name,Description,CreatedDate,ModifiedDate")] ODCategory oDCategory)
         {
             if (ModelState.IsValid)
             {
@@ -68,12 +68,12 @@ namespace ShopManagementSystem.Controllers
         // GET: ODCategories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ODCategorys == null)
+            if (id == null || _context.ODCategory == null)
             {
                 return NotFound();
             }
 
-            var oDCategory = await _context.ODCategorys.FindAsync(id);
+            var oDCategory = await _context.ODCategory.FindAsync(id);
             if (oDCategory == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace ShopManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Id,CreatedDate,ModifiedDate,MobileNumber,Total,Description")] ODCategory oDCategory)
+        public async Task<IActionResult> Edit(int id, [Bind("ODCategoryId,Name,Description,CreatedDate,ModifiedDate")] ODCategory oDCategory)
         {
             if (id != oDCategory.ODCategoryId)
             {
@@ -119,12 +119,12 @@ namespace ShopManagementSystem.Controllers
         // GET: ODCategories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ODCategorys == null)
+            if (id == null || _context.ODCategory == null)
             {
                 return NotFound();
             }
 
-            var oDCategory = await _context.ODCategorys
+            var oDCategory = await _context.ODCategory
                 .FirstOrDefaultAsync(m => m.ODCategoryId == id);
             if (oDCategory == null)
             {
@@ -139,14 +139,14 @@ namespace ShopManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ODCategorys == null)
+            if (_context.ODCategory == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ODCategorys'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.ODCategory'  is null.");
             }
-            var oDCategory = await _context.ODCategorys.FindAsync(id);
+            var oDCategory = await _context.ODCategory.FindAsync(id);
             if (oDCategory != null)
             {
-                _context.ODCategorys.Remove(oDCategory);
+                _context.ODCategory.Remove(oDCategory);
             }
             
             await _context.SaveChangesAsync();
@@ -155,7 +155,7 @@ namespace ShopManagementSystem.Controllers
 
         private bool ODCategoryExists(int id)
         {
-          return _context.ODCategorys.Any(e => e.ODCategoryId == id);
+          return _context.ODCategory.Any(e => e.ODCategoryId == id);
         }
     }
 }

@@ -1,0 +1,144 @@
+﻿@model ShopManagementSystem.Models.Insurance
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Insurance</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.UserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomineeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomineeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PolicyNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PolicyNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ODCategory)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ODCategory.ODCategoryId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Premium)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Premium)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ODPremium)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ODPremium)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ODPercentage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ODPercentage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Commission)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Commission)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NoClaimBonusPercentage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NoClaimBonusPercentage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CompanyName.CompanyId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleModel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleModel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Broker)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Broker)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EngineNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EngineNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ChaiseNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ChaiseNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ManufactureMonthyear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ManufactureMonthyear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Income)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Income)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Expense)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Expense)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.InsuranceId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
