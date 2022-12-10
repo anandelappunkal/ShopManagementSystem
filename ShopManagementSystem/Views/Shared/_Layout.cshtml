@@ -51,12 +51,25 @@
                             <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Master
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index">User</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Index">Category</a></li>
-                                @*<li><hr class="dropdown-divider"></li>*@
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">  
                                 <li><a class="dropdown-item" asp-area="" asp-controller="ODCategories" asp-action="Index">ODCategory</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="UserTypes" asp-action="Index">user Type</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="UserTypes" asp-action="Index">User Types</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Companies" asp-action="Index">Company</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Users" asp-action="Index">User</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Enter Business
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a></li>
+                                @*<li><hr class="dropdown-divider"></li>*@
+                                <li><a class="dropdown-item" asp-area="" asp-controller="JioPoslites" asp-action="Index">JioPoslite</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="SoundBoxes" asp-action="Index">Sound Box</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Shops" asp-action="Index">Shop</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="FasTags" asp-action="Index">FasTag</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
