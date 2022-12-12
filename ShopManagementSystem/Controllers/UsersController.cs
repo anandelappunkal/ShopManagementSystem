@@ -48,7 +48,11 @@ namespace ShopManagementSystem.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
+            User user= new User();
             ViewData["UserTypeID"] = new SelectList(_context.UserType, "UserTypeId", "UserTypeId");
+            var UserTypes = new SelectList(_context.UserType.OrderBy(l => l.Name)
+           .ToDictionary(us => us.UserTypeId, us => us.Name), "Key", "Value");
+            ViewBag.UserTypes = UserTypes;
             return View();
         }
 
@@ -57,14 +61,26 @@ namespace ShopManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,UserName,Password,Email,FirstName,LastName,DateOfBirth,Address,AadharID,PanCard,MobileNumber,UserTypeID,CreatedDate,ModifiedDate")] User user)
+        public async Task<IActionResult> Create([Bind("UserName,Password,Email,FirstName,LastName,DateOfBirth,Address,AadharID,PanCard,MobileNumber,UserTypeID")] User user)
         {
+            var userType = _context.UserType.Find(user.UserTypeID);
+            if (userType == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                user.UserType = userType;
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var UserTypes = new SelectList(_context.UserType.OrderBy(l => l.Name)
+           .ToDictionary(us => us.UserTypeId, us => us.Name), "Key", "Value");
+            ViewBag.UserTypes = UserTypes;
             ViewData["UserTypeID"] = new SelectList(_context.UserType, "UserTypeId", "UserTypeId", user.UserTypeID);
             return View(user);
         }
@@ -82,6 +98,9 @@ namespace ShopManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var UserTypes = new SelectList(_context.UserType.OrderBy(l => l.Name)
+           .ToDictionary(us => us.UserTypeId, us => us.Name), "Key", "Value");
+            ViewBag.UserTypes = UserTypes;
             ViewData["UserTypeID"] = new SelectList(_context.UserType, "UserTypeId", "UserTypeId", user.UserTypeID);
             return View(user);
         }
@@ -91,8 +110,23 @@ namespace ShopManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,Password,Email,FirstName,LastName,DateOfBirth,Address,AadharID,PanCard,MobileNumber,UserTypeID,CreatedDate,ModifiedDate")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Email,FirstName,LastName,DateOfBirth,Address,AadharID,PanCard,MobileNumber,UserTypeID")] User user)
         {
+            //var userDetails = _context.User.Find(user.UserId);
+            //if(userDetails !=null)
+            //{
+            //    user.UserName = userDetails.UserName;
+            //    user.Password = userDetails.Password;
+            //}
+            var userType = _context.UserType.Find(user.UserTypeID);
+            if (userType == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                user.UserType = userType;
+            }
             if (id != user.UserId)
             {
                 return NotFound();
@@ -102,6 +136,7 @@ namespace ShopManagementSystem.Controllers
             {
                 try
                 {
+                    
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -118,6 +153,9 @@ namespace ShopManagementSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            var UserTypes = new SelectList(_context.UserType.OrderBy(l => l.Name)
+           .ToDictionary(us => us.UserTypeId, us => us.Name), "Key", "Value");
+            ViewBag.UserTypes = UserTypes;
             ViewData["UserTypeID"] = new SelectList(_context.UserType, "UserTypeId", "UserTypeId", user.UserTypeID);
             return View(user);
         }

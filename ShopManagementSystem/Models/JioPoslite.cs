@@ -8,8 +8,10 @@ namespace ShopManagementSystem.Models
     {
         public int JioPosliteId { get; set; }
         [ForeignKey("CustomerId")]
-        public User? user { get; set; }
+        public User? User { get; set; }
+        [Display(Name = "Customer Name")]
         public int CustomerId { get; set; }
+       
 
         [StringLength(50, ErrorMessage = "TarifPlan cannot be longer than 50 characters.")]
         public string TarifPlan { get; set; }

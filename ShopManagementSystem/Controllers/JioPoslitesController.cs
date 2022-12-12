@@ -22,7 +22,7 @@ namespace ShopManagementSystem.Controllers
         // GET: JioPoslites
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.JioPsoslite.Include(j => j.user);
+            var applicationDbContext = _context.JioPsoslite.Include(j => j.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var jioPoslite = await _context.JioPsoslite
-                .Include(j => j.user)
+                .Include(j => j.User)
                 .FirstOrDefaultAsync(m => m.JioPosliteId == id);
             if (jioPoslite == null)
             {
@@ -48,6 +48,9 @@ namespace ShopManagementSystem.Controllers
         // GET: JioPoslites/Create
         public IActionResult Create()
         {
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+          .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["CustomerId"] = new SelectList(_context.User, "UserId", "UserId");
             return View();
         }
@@ -59,12 +62,24 @@ namespace ShopManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("JioPosliteId,CustomerId,TarifPlan,Amount,Total,CreatedDate,ModifiedDate")] JioPoslite jioPoslite)
         {
+            var userDetails = _context.User.Find(jioPoslite.CustomerId);
+            if (userDetails == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                jioPoslite.User = userDetails;
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(jioPoslite);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+           .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["CustomerId"] = new SelectList(_context.User, "UserId", "UserId", jioPoslite.CustomerId);
             return View(jioPoslite);
         }
@@ -82,6 +97,9 @@ namespace ShopManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+           .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["CustomerId"] = new SelectList(_context.User, "UserId", "UserId", jioPoslite.CustomerId);
             return View(jioPoslite);
         }
@@ -131,7 +149,7 @@ namespace ShopManagementSystem.Controllers
             }
 
             var jioPoslite = await _context.JioPsoslite
-                .Include(j => j.user)
+                .Include(j => j.User)
                 .FirstOrDefaultAsync(m => m.JioPosliteId == id);
             if (jioPoslite == null)
             {

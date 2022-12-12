@@ -5,19 +5,17 @@ namespace ShopManagementSystem.Models
 {
     public class User
     {
-        public int UserId { get; set; }
-        [StringLength(15, ErrorMessage = "UserName cannot be longer than 15 characters.")]
-        public string UserName { get; set; }
-        [StringLength(15, ErrorMessage = "Password cannot be longer than 15 characters.")]
-        public string Password { get; set; }
-        [StringLength(15, ErrorMessage = "Email cannot be longer than 15 characters.")]
+        public int UserId { get; set; }       
+        public string? UserName { get; set; }       
+        public string? Password { get; set; }
+        [StringLength(250, ErrorMessage = "Email cannot be longer than 250 characters.")]
         public string Email { get; set; }
         [StringLength(15, ErrorMessage = "FirstName cannot be longer than 15 characters.")]
         public string? FirstName { get; set; }
         [StringLength(15, ErrorMessage = "LastName cannot be longer than 15 characters.")]
         public string? LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters.")]
+        [StringLength(250, ErrorMessage = "Address cannot be longer than 50 characters.")]
         public string Address { get; set; }
         [StringLength(15, ErrorMessage = "AadharID cannot be longer than 15 characters.")]
 
@@ -26,9 +24,9 @@ namespace ShopManagementSystem.Models
 
         public string? PanCard { get; set; }
 
-        public int? MobileNumber { get; set; }
+        public string? MobileNumber { get; set; }
 
-        public UserType UserType { get; set; }
+        public UserType? UserType { get; set; }
 
         public int UserTypeID { get; set; }
 

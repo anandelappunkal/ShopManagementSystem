@@ -48,7 +48,7 @@
                             <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index" aria-current="page">Home</a>
                         </li>                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" asp-controller="ODCategories" asp-action="Index" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Master
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">  
@@ -59,22 +59,23 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" asp-controller="JioPoslites" asp-action="Index" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Enter Business
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a></li>
+                               
                                 @*<li><hr class="dropdown-divider"></li>*@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="JioPoslites" asp-action="Index">JioPoslite</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="SoundBoxes" asp-action="Index">Sound Box</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Shops" asp-action="Index">Shop</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="FasTags" asp-action="Index">FasTag</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index" aria-current="page">Enter Business</a>
-                        </li>
+                        </li>*@
                         <li class="nav-item">   <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index" aria-current="page">Reports</a>
                         </li>  
                     </ul>
