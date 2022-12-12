@@ -9,7 +9,8 @@ namespace ShopManagementSystem.Models
         public int SoundBoxId { get; set; }
 
         [ForeignKey("ShopId")]
-        public Shop ShopName { get; set; }
+        public Shop? ShopName { get; set; }
+        [Display(Name = "Shop Name")]
         public int ShopId { get; set; }       
         public string? Category { get; set; }
         public string? ItemPlan { get; set; }

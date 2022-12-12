@@ -48,6 +48,9 @@ namespace ShopManagementSystem.Controllers
         // GET: Fastags/Create
         public IActionResult Create()
         {
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+          .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId");
             return View();
         }
@@ -65,6 +68,9 @@ namespace ShopManagementSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+          .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId", fastag.UserId);
             return View(fastag);
         }
@@ -82,6 +88,9 @@ namespace ShopManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var Customers = new SelectList(_context.User.OrderBy(l => l.FirstName)
+         .ToDictionary(us => us.UserId, us => us.FirstName), "Key", "Value");
+            ViewBag.Customers = Customers;
             ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId", fastag.UserId);
             return View(fastag);
         }

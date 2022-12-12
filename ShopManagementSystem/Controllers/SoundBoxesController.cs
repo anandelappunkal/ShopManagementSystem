@@ -48,6 +48,9 @@ namespace ShopManagementSystem.Controllers
         // GET: SoundBoxes/Create
         public IActionResult Create()
         {
+            var Shops = new SelectList(_context.Shop.OrderBy(l => l.Name)
+          .ToDictionary(us => us.ShopId, us => us.Name), "Key", "Value");
+            ViewBag.Shops = Shops;
             ViewData["ShopId"] = new SelectList(_context.Shop, "ShopId", "ShopId");
             return View();
         }
@@ -57,7 +60,7 @@ namespace ShopManagementSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SoundBoxId,ShopId,Category,ItemPlan,NoOfItems,Price,Total,CreatedDate,ModifiedDate")] SoundBox soundBox)
+        public async Task<IActionResult> Create([Bind("SoundBoxId,ShopId,Category,ItemPlan,NoOfItems,Price,Total")] SoundBox soundBox)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +68,9 @@ namespace ShopManagementSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var Shops = new SelectList(_context.Shop.OrderBy(l => l.Name)
+          .ToDictionary(us => us.ShopId, us => us.Name), "Key", "Value");
+            ViewBag.Shops = Shops;
             ViewData["ShopId"] = new SelectList(_context.Shop, "ShopId", "ShopId", soundBox.ShopId);
             return View(soundBox);
         }
@@ -82,6 +88,9 @@ namespace ShopManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var Shops = new SelectList(_context.Shop.OrderBy(l => l.Name)
+         .ToDictionary(us => us.ShopId, us => us.Name), "Key", "Value");
+            ViewBag.Shops = Shops;
             ViewData["ShopId"] = new SelectList(_context.Shop, "ShopId", "ShopId", soundBox.ShopId);
             return View(soundBox);
         }
